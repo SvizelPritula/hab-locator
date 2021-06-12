@@ -83,8 +83,13 @@ export default function App() {
           },
           !headingAbsolute && headingOffset == null && {
             type: "warning",
-            error: "Cannot obtain absolute heading, calibration required!",
+            error: "Cannot obtain absolute heading, please calibrate the compass using the button below.",
             id: "calibrate"
+          },
+          permissionRequired && {
+            type: "warning",
+            error: "Access to motion sensors denied, please allow access using the button below.",
+            id: "permission"
           }
         ].filter(Boolean)}
       />
