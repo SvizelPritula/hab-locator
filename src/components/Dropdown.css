@@ -1,0 +1,47 @@
+#header {
+  width: 100%;
+  border-bottom: solid 3px white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  background-color: black;
+}
+
+#dropdown {
+  font-size: 1cm;
+  font-family: monospace;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+  height: 1.5cm;
+  max-width: 100%;
+  padding: 5px;
+  padding-right: 1.5cm;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0ibTMwIDQwIDIwIDIwIDIwLTIwIi8+PC9zdmc+");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-overflow: ellipsis;
+}
+
+#dropdown:disabled {
+  color: lightgray;
+}
+
+#dropdown option {
+  font-family: monospace;
+  color: white;
+  background-color: #101010;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.warning {
+  color: orange;
+  text-align: center;
+}

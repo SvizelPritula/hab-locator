@@ -1,0 +1,29 @@
+<!-- Ironically, this is smaller then the optimised version when deflated -->
+<!-- This one is 249 bytes, the optimised one 290 -->
+<!-- But let's use the optimised one, since both are small anyway and uncompressed size also matters a bit -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <g stroke="black" stroke-width="2">
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(0,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(20,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(40,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(60,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(80,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(100,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(120,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(140,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(160,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(180,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(200,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(220,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(240,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(260,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(280,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(300,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(320,20,20)" />
+    <line x1="20" y1="0" x2="20" y2="5" transform="rotate(340,20,20)" />
+  </g>
+
+  <g transform="rotate(-30,20,20)">
+    <path fill="black" d="M20 10,10 25,20 20,30 25,z" />
+  </g>
+</svg>

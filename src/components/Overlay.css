@@ -1,0 +1,21 @@
+#overlay {
+  pointer-events: none;
+}
+
+#bearing {
+  position: absolute;
+  top: 0;
+  left: 5px;
+}
+
+#distance {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+#bearing,
+#distance {
+  font-size: 8mm;
+  pointer-events: all;
+}

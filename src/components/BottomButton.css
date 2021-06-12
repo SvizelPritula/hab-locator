@@ -1,0 +1,14 @@
+#bottom-button {
+  width: 100%;
+  border: none;
+  border-top: solid 3px white;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-size: 7mm;
+  cursor: pointer;
+}
+
+#bottom-button:active {
+  background: #202020;
+}

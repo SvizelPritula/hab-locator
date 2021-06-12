@@ -1,0 +1,9 @@
+#coords {
+  width: 100%;
+  min-height: 6mm;
+  font-size: 5mm;
+  text-align: center;
+  pointer-events: all;
+  color: #f0f0f0;
+  padding-bottom: 5px;
+}
