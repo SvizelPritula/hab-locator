@@ -4,6 +4,20 @@ const apiURL = new URL("https://spacenear.us/tracker/datanew.php");
 const filter = "!RS_*;";
 const timeframe = "6hours";
 
+/**
+ * Class representing an error resulting from unexpected data returned from server
+ */
+class BadResponseError extends Error {
+  /**
+   * Create a BadResponseError object
+   * @param {string} message the error message
+   */
+  constructor(message) {
+    super(message);
+    this.name = "BadResponseError";
+  }
+}
+
 /** @typedef {{callsign: string, data: any, gps_alt: string, gps_heading: string, gps_lat: string, gps_lon: string, gps_speed: string, gps_time: string, mission_id: string, picture: string, position_id: string, sequence: string, server_time: string, temp_inside: string, vehicle: string}} HabhubPosition */
 /** @typedef {{positions: {position: Array<HabhubPosition>}, ssdv: any}} HabhubResponse */
 
@@ -32,7 +46,7 @@ async function getNewData(lastId) {
   return data;
 }
 
-/** @typedef {{latitude: number, longitude: number, altitude: number, vehicle: string}} Coordinates */
+/** @typedef {{latitude: number, longitude: number, altitude: number?, vehicle: string}} Coordinates */
 
 /**
  * Update state map with new API data
@@ -44,29 +58,50 @@ async function getNewData(lastId) {
 function updateState(lastId, state, data) {
   state = new Map(state.entries());
 
-  if (typeof data.positions !== "object") throw new Error('"positions" is not an object');
-  if (!Array.isArray(data.positions.position)) throw new Error('"position" is not an array');
+  if (typeof data.positions !== "object") throw new BadResponseError('"positions" is not an object');
+  if (!Array.isArray(data.positions.position)) throw new BadResponseError('"position" is not an array');
 
   var positions = data.positions.position;
   positions = Array.from(positions).reverse();
 
   for (var position of positions) {
-    if (typeof position !== "object") throw new Error('"position" contains elements other than objects');
+    try {
+      if (typeof position !== "object") throw new BadResponseError('"position" contains elements other than objects');
 
-    if (typeof position.vehicle !== "string") throw new Error('"vehicle" is not a string');
-    if (isNaN(parseFloat(position.gps_lat))) throw new Error('"gps_lat" is not a valid float');
-    if (isNaN(parseFloat(position.gps_lon))) throw new Error('"gps_lon" is not a valid float');
-    if (isNaN(parseFloat(position.gps_alt))) throw new Error('"gps_alt" is not a valid float'); // Possibly always an int?
-    if (isNaN(parseInt(position.position_id, 10))) throw new Error('"position_id" is not a valid int');
+      var {
+        vehicle,
+        gps_lat: latitude,
+        gps_lon: longitude,
+        gps_alt: altitude,
+        position_id: id
+      } = position;
 
-    state.set(position.vehicle, {
-      vehicle: position.vehicle,
-      latitude: parseFloat(position.gps_lat),
-      longitude: parseFloat(position.gps_lon),
-      altitude: parseFloat(position.gps_alt)
-    });
+      latitude = parseFloat(latitude);
+      longitude = parseFloat(longitude);
+      altitude = parseFloat(altitude); // Possibly always an int?
+      id = parseInt(id);
 
-    lastId = Math.max(parseInt(position.position_id, 10), lastId);
+      if (typeof vehicle !== "string") throw new BadResponseError('"vehicle" is not a string');
+      if (isNaN(latitude)) throw new BadResponseError('"gps_lat" is not a valid float');
+      if (isNaN(longitude)) throw new BadResponseError('"gps_lon" is not a valid float');
+      if (isNaN(id)) throw new BadResponseError('"position_id" is not a valid int');
+
+      state.set(position.vehicle, {
+        vehicle: position.vehicle,
+        latitude: latitude,
+        longitude: longitude,
+        altitude: isNaN(altitude) ? null : altitude
+      });
+
+      lastId = Math.max(parseInt(position.position_id, 10), lastId);
+    } catch (error) {
+      if (error instanceof BadResponseError) {
+        console.warn(error);
+        continue;
+      } else {
+        throw error;
+      }
+    }
   }
 
   return [lastId, state];
