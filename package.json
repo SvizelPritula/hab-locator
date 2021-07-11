@@ -1,6 +1,6 @@
 {
   "name": "hab-locator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "author": "Benjamin Swart",
   "description": "A compass-like app for tracking high-altitude balloons",
