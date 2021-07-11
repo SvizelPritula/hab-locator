@@ -76,12 +76,14 @@ export default function Compass({ loading, heading, bearing, targetName }) {
         ))}
 
         {getLabels().map(({ name, angle, cardinal, underline }) => (
-          <g style={{
-            transform: `rotate(${angle}turn)`,
-            transformOrigin: "50px 50px"
-          }}>
+          <g
+            key={name}
+            style={{
+              transform: `rotate(${angle}turn)`,
+              transformOrigin: "50px 50px"
+            }}
+          >
             <text
-              key={name}
               x={50}
               y={10}
               style={{
