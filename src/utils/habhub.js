@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const apiURL = new URL("https://spacenear.us/tracker/datanew.php");
+const apiURL = new URL("https://legacy-snus.habhub.org/tracker/datanew.php");
 const filter = "!RS_*;";
 const timeframe = "6hours";
 
