@@ -13,7 +13,8 @@ import BottomButton from "components/BottomButton";
 import "components/App.css";
 
 const habhubOptions = { interval: 10 * 1000 };
-const geolocationOptions = { maximumAge: 60 * 1000, timeout: 20 * 1000 };
+/** @type {PositionOptions} */
+const geolocationOptions = { maximumAge: 60 * 1000, timeout: 20 * 1000, enableHighAccuracy: true };
 
 /**
  * The root component of the app
