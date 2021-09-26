@@ -1,6 +1,6 @@
 import { getDistance } from "geolib";
 
-/** @typedef {{name: string, id: string, latitude: number, longitude: number, altitude: number, distance: number?, virtual: boolean}} Target */
+/** @typedef {{name: string, id: string, latitude: number, longitude: number, altitude: number?, distance: number?, virtual: boolean}} Target */
 
 const collator = new Intl.Collator("en-uk", {
   usage: "sort",
@@ -16,7 +16,7 @@ const virtualTargets = [
     id: "N",
     latitude: 90,
     longitude: 0,
-    altitude: 0,
+    altitude: null,
     distance: null,
     virtual: true
   }

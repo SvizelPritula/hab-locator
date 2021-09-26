@@ -37,6 +37,7 @@ export default function CompassWrapper({ target, coords, heading }) {
         />
         <Coordinates
           target={target}
+          device={coords}
         />
       </div>
       {!loading && (

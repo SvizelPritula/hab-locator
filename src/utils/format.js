@@ -32,8 +32,11 @@ export function formatDistance(distance, fractional = true) {
  * Formats either latitude or longitude
  * @param {number} value the value to format 
  * @param {[string, string]} directions the prefix letter for positive and negative coordinates, respectively
+ * @param {boolean} decimal if true, use D.D format, else use D° M' S''
  */
-function formatCoordinateKey(value, directions) {
+function formatCoordinateKey(value, directions, decimal = false) {
+  if (decimal) return value.toFixed(6);
+
   var parts = [];
 
   parts.push(directions[Number(value < 0)]);
@@ -55,11 +58,12 @@ function formatCoordinateKey(value, directions) {
 /**
 * Format geographical coordinates
 * @param {{latitude: number, longitude: number, altitude: number?}} coords the coordinates to format
+* @param {boolean} decimal if true, use D.D format, else use [NSWE] D° M' S''
 * @returns {string} the formatted string
 */
-export function formatCoordinates(coords) {
-  var lat = formatCoordinateKey(coords.latitude, ['N', 'S']);
-  var lon = formatCoordinateKey(coords.longitude, ['E', 'W']);
+export function formatCoordinates(coords, decimal = false) {
+  var lat = formatCoordinateKey(coords.latitude, ['N', 'S'], decimal);
+  var lon = formatCoordinateKey(coords.longitude, ['E', 'W'], decimal);
 
   var parts = [lat, lon];
 

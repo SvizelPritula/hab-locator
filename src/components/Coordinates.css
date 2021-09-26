@@ -1,9 +1,15 @@
 #coords {
   width: 100%;
   min-height: 6mm;
-  font-size: 5mm;
+  font-size: 4mm;
   text-align: center;
   pointer-events: all;
   color: #f0f0f0;
   padding-bottom: 5px;
+  background-color: transparent;
+  border: none;
+}
+
+#coords p {
+  margin: 0;
 }
